@@ -1,22 +1,28 @@
+---
+import "@fontsource/poppins/400-italic.css";
+import "@fontsource/poppins/700.css";
+import "@fontsource/poppins/800-italic.css";
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' href='/favicon-32x32.png' />
+    <title>Age Calculator App</title>
+  </head>
+  <body class="bg-offwhite grid place-items-center">
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Poppins", sans-serif;
+  }
 </style>
