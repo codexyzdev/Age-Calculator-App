@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styles/Age-calculator.css";
 import calculateAge from "../utils/calculator-age";
 import { motion } from "framer-motion";
+import ResultAnimation from "./Result-animation";
 
 export default function AgeCalculator() {
   const [date, setDate] = useState({
@@ -91,7 +92,11 @@ export default function AgeCalculator() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {yearsResult ? resultAnimation(yearsResult,0) : <span className="text-purple mr-2">--</span>}
+          {yearsResult ? (
+            ResultAnimation(yearsResult, 0)
+          ) : (
+            <span className='text-purple mr-2'>--</span>
+          )}
           years
         </motion.p>
         <motion.p
@@ -100,7 +105,11 @@ export default function AgeCalculator() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {monthsResult ? resultAnimation(monthsResult,0.2) : <span className="text-purple mr-2">--</span>}
+          {monthsResult ? (
+            ResultAnimation(monthsResult, 0.2)
+          ) : (
+            <span className='text-purple mr-2'>--</span>
+          )}
           months
         </motion.p>
         <motion.p
@@ -109,24 +118,14 @@ export default function AgeCalculator() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          {daysResult ? resultAnimation(daysResult,0.4) : <span className="text-purple mr-2">--</span>}
+          {daysResult ? (
+            ResultAnimation(daysResult, 0.4)
+          ) : (
+            <span className='text-purple mr-2'>--</span>
+          )}
           days
         </motion.p>
       </div>
     </form>
-  );
-}
-
-function resultAnimation(result, delay) {
-  return (
-    <motion.span
-      className='text-purple inline-block mr-2'
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, delay }}
-    >
-      {result}
-      {""}
-    </motion.span>
   );
 }
