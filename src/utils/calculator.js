@@ -1,4 +1,4 @@
-function calculateAge(day, month, year) {
+const calculateAge = (day, month, year) => {
   // Crear la fecha de nacimiento (los meses en JavaScript van de 0 a 11)
   const birthDate = new Date(year, month - 1, day);
   const today = new Date(); // Fecha actual
@@ -41,6 +41,16 @@ function calculateAge(day, month, year) {
     days = lastDayOfPrevMonth - birthDate.getDate() + today.getDate();
   }
   return { years, months, days };
-}
+};
 
-export default calculateAge;
+const isValidDate = (today, month, year) => {
+  const birthday = new Date(year, month - 1, today);
+
+  if (birthday.getMonth() !== month - 1 || birthday.getDate() !== today) {
+    return false;
+  }else{
+    return true;
+  }
+};
+
+export { calculateAge, isValidDate };
