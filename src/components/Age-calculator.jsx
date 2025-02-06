@@ -2,7 +2,6 @@ import { useState } from "react";
 import "../styles/Age-calculator.css";
 import calculateAge from "../utils/calculator-age";
 import { motion } from "framer-motion";
-import { span } from "framer-motion/client";
 
 export default function AgeCalculator() {
   const [date, setDate] = useState({
