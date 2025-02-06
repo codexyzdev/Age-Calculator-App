@@ -21,7 +21,6 @@ export default function AgeCalculator() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const { years, months, days } = calculateAge(
       parseInt(date.day),
       parseInt(date.month),
@@ -92,7 +91,7 @@ export default function AgeCalculator() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {yearsResult ? resultAnimation(yearsResult) : <span className="text-purple mr-2">--</span>}
+          {yearsResult ? resultAnimation(yearsResult,0) : <span className="text-purple mr-2">--</span>}
           years
         </motion.p>
         <motion.p
@@ -101,7 +100,7 @@ export default function AgeCalculator() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {monthsResult ? resultAnimation(monthsResult) : <span className="text-purple mr-2">--</span>}
+          {monthsResult ? resultAnimation(monthsResult,0.2) : <span className="text-purple mr-2">--</span>}
           months
         </motion.p>
         <motion.p
@@ -110,7 +109,7 @@ export default function AgeCalculator() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          {daysResult ? resultAnimation(daysResult) : <span className="text-purple mr-2">--</span>}
+          {daysResult ? resultAnimation(daysResult,0.4) : <span className="text-purple mr-2">--</span>}
           days
         </motion.p>
       </div>
@@ -118,13 +117,13 @@ export default function AgeCalculator() {
   );
 }
 
-function resultAnimation(result) {
+function resultAnimation(result, delay) {
   return (
     <motion.span
       className='text-purple inline-block mr-2'
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, delay }}
     >
       {result}
       {""}
