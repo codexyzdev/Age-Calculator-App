@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "../styles/Age-calculator.css";
 import calculateAge from "../utils/calculator-age";
+import { motion } from "framer-motion";
+import { span } from "framer-motion/client";
 
 export default function AgeCalculator() {
   const [date, setDate] = useState({
@@ -13,8 +15,6 @@ export default function AgeCalculator() {
   const [yearsResult, setYearsResult] = useState("");
   const [monthsResult, setMonthsResult] = useState("");
   const [daysResult, setDaysResult] = useState("");
-
-
 
   const handleChange = (e) => {
     setDate({ ...date, [e.target.name]: e.target.value });
@@ -87,23 +87,48 @@ export default function AgeCalculator() {
         </button>
       </div>
       <div>
-        <p className='text-[40px] leading-11 md:text-6xl md:leading-18 '>
-          <span className='text-purple'>
-            {yearsResult ? yearsResult : "--"}
-          </span>{" "}
+        <motion.p
+          className='text-[40px] leading-11 md:text-6xl md:leading-18'
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {yearsResult ? resultAnimation(yearsResult) : <span className="text-purple mr-2">--</span>}
           years
-        </p>
-        <p className='text-[40px] leading-11 md:text-6xl md:leading-18'>
-          <span className='text-purple'>
-            {monthsResult ? monthsResult : "--"}
-          </span>{" "}
+        </motion.p>
+        <motion.p
+          className='text-[40px] leading-11 md:text-6xl md:leading-18'
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          {monthsResult ? resultAnimation(monthsResult) : <span className="text-purple mr-2">--</span>}
           months
-        </p>
-        <p className='text-[40px] leading-11 md:text-6xl md:leading-18'>
-          <span className='text-purple'>{daysResult ? daysResult : "--"}</span>{" "}
+        </motion.p>
+        <motion.p
+          className='text-[40px] leading-11 md:text-6xl md:leading-18'
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          {daysResult ? resultAnimation(daysResult) : <span className="text-purple mr-2">--</span>}
           days
-        </p>
+        </motion.p>
       </div>
     </form>
+  );
+}
+
+function resultAnimation(result) {
+  return (
+    <motion.span
+      className='text-purple inline-block mr-2'
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      {result}
+      {""}
+    </motion.span>
   );
 }
