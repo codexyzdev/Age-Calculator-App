@@ -13,6 +13,17 @@ label {
   font-weight: 400;
   font-size: 0.8rem;
   letter-spacing: 3px;
+  position: relative;
+  & span{
+    color: var(--color-lightred);
+    font-size: 0.4rem;
+    font-weight: 300;
+    text-transform: none;
+    letter-spacing: normal;
+    position: absolute;
+    bottom: -1rem;
+    display: none;
+  }
 }
 input[type="number"] {
   border: 1px solid var(--color-lightgrey);
@@ -30,4 +41,21 @@ input[type="number"] {
 input[type="number"]:focus {
   border-color: var(--color-purple);
   outline: none;
+}
+
+
+input[type="number"]:invalid {
+  border-color: var(--color-lightred);
+}
+
+label:has(input[type="number"]:invalid) {
+  color: var(--color-lightred);
+}
+
+
+label:has(input[type="number"]:required) {
+  color: var(--color-lightred);
+  & span{
+    display: block;
+  }
 }

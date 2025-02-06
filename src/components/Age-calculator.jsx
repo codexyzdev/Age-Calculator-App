@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useRef} from "react";
 import "../styles/Age-calculator.css";
 import calculateAge from "../utils/calculator-age";
 import { motion } from "framer-motion";
 import ResultAnimation from "./Result-animation";
 
 export default function AgeCalculator() {
+  const dayRef = useRef(null);
+  const monthRef = useRef(null);
+  const yearRef = useRef(null);
+
   const [date, setDate] = useState({
     day: "",
     month: "",
@@ -22,6 +26,23 @@ export default function AgeCalculator() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (date.day) {
+      dayRef.current.required = false;
+    } else {
+      dayRef.current.required = true;
+    }
+    if (date.month) {
+      monthRef.current.required = false;
+    } else {
+      monthRef.current.required = true;
+    }
+    if (date.year) {
+      yearRef.current.required = false;
+    } else {
+      yearRef.current.required = true;
+    }
+
     const { years, months, days } = calculateAge(
       parseInt(date.day),
       parseInt(date.month),
@@ -48,7 +69,9 @@ export default function AgeCalculator() {
             min='1'
             max='31'
             onChange={handleChange}
+            ref={dayRef}
           />
+          <span>this field is required</span>
         </label>
         <label htmlFor='month'>
           Month
@@ -59,8 +82,10 @@ export default function AgeCalculator() {
             placeholder='MM'
             min='1'
             max='12'
+            ref={monthRef}
             onChange={handleChange}
           />
+          <span>this field is required</span>
         </label>
         <label htmlFor='year'>
           Year
@@ -72,7 +97,9 @@ export default function AgeCalculator() {
             onChange={handleChange}
             min='1900'
             max={actual}
+            ref={yearRef}
           />
+          <span>this field is required</span>
         </label>
       </div>
       <div className='my-12 relative'>
