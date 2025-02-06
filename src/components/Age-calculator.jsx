@@ -102,7 +102,7 @@ export default function AgeCalculator() {
           <span>this field is required</span>
         </label>
       </div>
-      <div className='my-12 relative'>
+      <div className='my-13 relative'>
         <hr className='text-lightgrey' />
         <button className='bg-purple rounded-full p-4 absolute top-1/2 right-1/2 transform translate-x-1/2 -translate-y-1/2 md:right-8 hover:bg-offblack transition-all duration-300'>
           <img
