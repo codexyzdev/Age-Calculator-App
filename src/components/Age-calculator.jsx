@@ -1,11 +1,13 @@
 import { useState } from "react";
+import "../styles/Age-calculator.css";
+
 export default function AgeCalculator() {
   const [date, setDate] = useState({
     day: "",
     month: "",
     year: "",
   });
-  const [actual, setActual]=useState(new Date().getFullYear())
+  const [actual, setActual] = useState(new Date().getFullYear());
   // Resultados en variables
   const [yearsResult, setYearsResult] = useState("");
   const [monthsResult, setMonthsResult] = useState("");
@@ -72,10 +74,11 @@ export default function AgeCalculator() {
     setMonthsResult(months);
     setDaysResult(days);
   };
+
   return (
     <form
       onSubmit={handleSubmit}
-      className='max-w-80 md:max-w-max  bg-white p-8 rounded-lg rounded-br-[5rem] md:p-12'
+      className='max-w-80 md:max-w-max bg-white p-6 rounded-lg rounded-br-[5rem] md:p-12'
     >
       <div className='grid grid-cols-3 md:grid-cols-4 gap-4 max-w-xl'>
         <label htmlFor='day'>
@@ -125,8 +128,8 @@ export default function AgeCalculator() {
           />
         </button>
       </div>
-      <div className=''>
-        <p className='text-[40px] leading-11 md:text-6xl md:leading-18'>
+      <div>
+        <p className='text-[40px] leading-11 md:text-6xl md:leading-18 '>
           <span className='text-purple'>
             {yearsResult ? yearsResult : "--"}
           </span>{" "}
