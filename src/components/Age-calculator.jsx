@@ -35,7 +35,7 @@ export default function AgeCalculator() {
   return (
     <form
       onSubmit={handleSubmit}
-      className='max-w-80 md:max-w-max bg-white p-6 rounded-lg rounded-br-[5rem] md:p-12 transition-all duration-300'
+      className='max-w-80 md:max-w-max bg-white p-6 rounded-lg rounded-br-[5rem] md:p-12 transition-all duration-300 mx-auto mt-10 md:mt-0 md:mx-0'
     >
       <div className='grid grid-cols-3 md:grid-cols-4 gap-4 max-w-xl'>
         <label htmlFor='day'>
