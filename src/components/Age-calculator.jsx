@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import toast, { Toaster } from "react-hot-toast";
 import { calculateAge, isValidDate } from "../utils/calculator";
 import ResultAnimation from "./Result-animation";
 import "../styles/Age-calculator.css";
-import toast, { Toaster } from "react-hot-toast";
 
 export default function AgeCalculator() {
   const dayRef = useRef(null);
@@ -70,7 +70,7 @@ export default function AgeCalculator() {
       <Toaster />
       <form
         onSubmit={handleSubmit}
-        className='max-w-80 md:max-w-max bg-white px-6 py-10 rounded-lg rounded-br-[5rem] md:p-12 transition-all duration-300 mx-auto  md:mx-0'
+        className='max-w-80 md:max-w-max bg-white px-6 py-10 rounded-lg rounded-br-[5rem] md:p-12 transition-all duration-300 mx-auto  md:mx-0 shadow-md'
       >
         <div className='grid grid-cols-3 md:grid-cols-4 gap-4 max-w-xl'>
           <label htmlFor='day'>
