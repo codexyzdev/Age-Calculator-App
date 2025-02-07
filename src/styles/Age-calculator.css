@@ -64,4 +64,7 @@ label:has(input[type="number"]:required) {
   }
 }
 
-
+dialog {
+  background-color: rgba(0, 0, 0, 0.5);
+  
+}

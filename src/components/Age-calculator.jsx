@@ -1,17 +1,14 @@
 import { useState, useRef } from "react";
-import "../styles/Age-calculator.css";
-import { calculateAge, isValidDate } from "../utils/calculator";
 import { motion } from "framer-motion";
+import { calculateAge, isValidDate } from "../utils/calculator";
 import ResultAnimation from "./Result-animation";
-import { i, s } from "framer-motion/client";
-
+import "../styles/Age-calculator.css";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function AgeCalculator() {
   const dayRef = useRef(null);
   const monthRef = useRef(null);
   const yearRef = useRef(null);
-  const dialogRef = useRef(null);
-  const [isOpen, setIsOpen] = useState(false);
 
   const [date, setDate] = useState({
     day: "",
@@ -46,7 +43,6 @@ export default function AgeCalculator() {
     } else {
       yearRef.current.required = true;
     }
-    setIsOpen(false);
 
     if (
       isValidDate(parseInt(date.day), parseInt(date.month), parseInt(date.year))
@@ -61,9 +57,8 @@ export default function AgeCalculator() {
       setMonthsResult(months);
       setDaysResult(days);
     } else {
-      setIsOpen(true);
-      dialogRef.current.showModal();
       console.log("fecha no valida");
+      toast("Invalid date!");
       setYearsResult("");
       setMonthsResult("");
       setDaysResult("");
@@ -71,14 +66,11 @@ export default function AgeCalculator() {
   };
 
   return (
-    <>
-      {/* <dialog ref={dialogRef} open={isOpen} className='dialog'>
-        <p>Greetings, one and all!</p>
-      </dialog> */}
-
+    <div>
+      <Toaster />
       <form
         onSubmit={handleSubmit}
-        className='max-w-80 md:max-w-max bg-white px-6 py-10 rounded-lg rounded-br-[5rem] md:p-12 transition-all duration-300 mx-auto mt-10 md:mt-0 md:mx-0'
+        className='max-w-80 md:max-w-max bg-white px-6 py-10 rounded-lg rounded-br-[5rem] md:p-12 transition-all duration-300 mx-auto  md:mx-0'
       >
         <div className='grid grid-cols-3 md:grid-cols-4 gap-4 max-w-xl'>
           <label htmlFor='day'>
@@ -95,6 +87,7 @@ export default function AgeCalculator() {
             />
             <span>this field is required</span>
           </label>
+
           <label htmlFor='month'>
             Month
             <input
@@ -176,6 +169,6 @@ export default function AgeCalculator() {
           </motion.p>
         </div>
       </form>
-    </>
+    </div>
   );
 }
