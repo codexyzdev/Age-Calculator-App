@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+
 export default function Result({ years, months, days, result, delay }) {
   const [animationKey, setAnimationKey] = useState(0);
+
   useEffect(() => {
     setAnimationKey((prev) => prev + 1);
   }, [years, months, days, result]);
