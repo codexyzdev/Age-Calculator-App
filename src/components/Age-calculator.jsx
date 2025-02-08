@@ -1,8 +1,7 @@
 import { useState, useRef } from "react";
-import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 import { calculateAge, isValidDate } from "../utils/calculator";
-import ResultAnimation from "./Result-animation";
+import Result from "./Result";
 import "../styles/Age-calculator.css";
 
 export default function AgeCalculator() {
@@ -15,7 +14,6 @@ export default function AgeCalculator() {
     month: "",
     year: "",
   });
-  const [actual, setActual] = useState(new Date().getFullYear());
   // Resultados en variables
   const [yearsResult, setYearsResult] = useState("");
   const [monthsResult, setMonthsResult] = useState("");
@@ -27,31 +25,22 @@ export default function AgeCalculator() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { day, month, year } = date;
 
-    if (date.day) {
-      dayRef.current.required = false;
-    } else {
-      dayRef.current.required = true;
-    }
-    if (date.month) {
-      monthRef.current.required = false;
-    } else {
-      monthRef.current.required = true;
-    }
-    if (date.year) {
-      yearRef.current.required = false;
-    } else {
-      yearRef.current.required = true;
-    }
+    dayRef.current.required = !day;
+    monthRef.current.required = !month;
+    yearRef.current.required = !year;
 
-    if (
-      isValidDate(parseInt(date.day), parseInt(date.month), parseInt(date.year))
-    ) {
+    const parsedDay = parseInt(day);
+    const parsedMonth = parseInt(month);
+    const parsedYear = parseInt(year);
+
+    if (isValidDate(parsedDay, parsedMonth, parsedYear)) {
       console.log("fecha valida");
       const { years, months, days } = calculateAge(
-        parseInt(date.day),
-        parseInt(date.month),
-        parseInt(date.year)
+        parsedDay,
+        parsedMonth,
+        parsedYear
       );
       setYearsResult(years);
       setMonthsResult(months);
@@ -111,7 +100,7 @@ export default function AgeCalculator() {
               placeholder='YYYY'
               onChange={handleChange}
               min='1900'
-              max={actual}
+              max={new Date().getFullYear()}
               ref={yearRef}
             />
             <span>this field is required</span>
@@ -128,45 +117,9 @@ export default function AgeCalculator() {
           </button>
         </div>
         <div>
-          <motion.p
-            className='text-[40px] leading-11 md:text-6xl md:leading-18'
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            {yearsResult ? (
-              ResultAnimation(yearsResult, 0)
-            ) : (
-              <span className='text-purple mr-2'>--</span>
-            )}
-            years
-          </motion.p>
-          <motion.p
-            className='text-[40px] leading-11 md:text-6xl md:leading-18'
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            {monthsResult ? (
-              ResultAnimation(monthsResult, 0.2)
-            ) : (
-              <span className='text-purple mr-2'>--</span>
-            )}
-            months
-          </motion.p>
-          <motion.p
-            className='text-[40px] leading-11 md:text-6xl md:leading-18'
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            {daysResult ? (
-              ResultAnimation(daysResult, 0.4)
-            ) : (
-              <span className='text-purple mr-2'>--</span>
-            )}
-            days
-          </motion.p>
+          <Result years='years' result={yearsResult} />
+          <Result months='months' result={monthsResult} delay={0.2} />
+          <Result days='days' result={daysResult} delay={0.4} />
         </div>
       </form>
     </div>
