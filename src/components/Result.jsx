@@ -10,7 +10,7 @@ export default function Result({ years, months, days, result, delay }) {
 
   return (
     <motion.p
-      className='text-[40px] leading-11 md:text-6xl md:leading-18'
+      className='text-[40px] leading-11 md:text-6xl md:leading-18 italic font-bold'
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay }}
@@ -18,7 +18,7 @@ export default function Result({ years, months, days, result, delay }) {
       {result ? (
         <motion.span
           key={animationKey}
-          className='text-purple inline-block mr-2'
+          className='text-purple inline-block mr-2 tracking-widest'
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay }}
@@ -26,7 +26,7 @@ export default function Result({ years, months, days, result, delay }) {
           {result}{" "}
         </motion.span>
       ) : (
-        <span className='text-purple mr-2'>--</span>
+        <span className='text-purple mr-2 tracking-widest'>--</span>
       )}
 
       {years ? "years" : months ? "months" : days ? "days" : ""}
